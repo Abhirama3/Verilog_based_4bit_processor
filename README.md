@@ -118,5 +118,19 @@ For hardware deployment, the following additions would be required:
 
 ---
 
+## Simulation Results
+
+### Testbench-driven Execution
+This simulation verifies FSM transitions, RAM access, and ALU operation.
+
+![TB Waveform](docs/tb_waveform.png)
+
+### Program Execution using .mem
+This simulation demonstrates sequential instruction execution using ROM initialized via `.mem`.
+
+![Program Waveform](docs/program_waveform.png)
+
+---
+
 ## Author
 Abhirama
