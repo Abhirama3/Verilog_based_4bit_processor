@@ -32,63 +32,9 @@ practices, making it suitable for FPGA implementation with minor system-level ad
 - **ALU4bit**       : 4-bit arithmetic and logic unit
 - **programCounter**: PC with enable signal
 - **instructionMem**: Read-only instruction memory (ROM)
+  
 
----
-
-## Instruction Format (12-bit)
-
-- [11] : Instruction Type
-   1 → MOV
-   0 → ALU operation
-- [10 : 8] : ALU Opcode
-- [7 : 4] : Destination Register Address
-- [3 : 0] : Source Register
-
-
----
-
-## Supported Operations
-
-### MOV Instruction
-- Writes immediate 4-bit data into a register
-
-### ALU Operations
-| Opcode | Operation |
-|------:|-----------|
-| 000   | ADD       |
-| 001   | SUB       |
-| 010   | INC       |
-| 011   | DEC       |
-| 100   | AND       |
-| 101   | OR        |
-| 110   | XOR       |
-| 111   | XNOR      |
-
----
-
-## FSM States and Execution Flow
-
-Each instruction is executed over multiple clock cycles:
-
-| State        | Function |
-|-------------|----------|
-| S_IDLE      | Idle / Initial state |
-| S_DECODE    | Decode instruction type |
-| S_MOV       | Execute MOV |
-| S_LATCH_OP  | Latch ALU opcode |
-| S_FETCH_A   | Read operand A |
-| S_FETCH_B   | Read operand B |
-| S_EXECUTE   | Perform ALU operation |
-| S_WRITEBACK | Write result to register |
-
-- MOV instructions complete in fewer cycles
-- ALU instructions require full multi-cycle execution
-
----
-
-## Program Counter Behavior
-- The PC increments **only after instruction completion**
-- Prevents instruction repetition and ensures correct sequencing
+### Please refer   ![ProcessorInfo](Documentation/Processor_Architecture.md)   for detailed architecture. 
 
 ---
 
@@ -122,7 +68,7 @@ For hardware deployment, the following additions would be required:
 
 This simulation verifies FSM transitions, RAM access and ALU operation using ROM initialized via `.mem`.
 
-![TB Waveform](docs/tb_waveform.png)
+![TB Waveform](Documentation/tb_waveform.png)
 
 ---
 
